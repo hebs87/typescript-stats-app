@@ -1,14 +1,9 @@
-import fs from 'fs';
+import { CsvFileReader } from "./CsvFileReader";
 
 // Read the file and convert to 2 dimensional array - first split each new line, then split new line at commas
-const matches = fs
-  .readFileSync('football.csv', {
-    encoding: 'utf-8'
-  })
-  .split('\n')
-  .map((row: string): string[] => {
-    return row.split(',');
-  });
+const reader = new CsvFileReader('football.csv');
+reader.read();
+const matches = reader.data;
 
 // enum - used to indicate a set of closely related results - stores either numbers or strings and accessed like objects
 // These can also be referenced as types, e.g. return value of a function
