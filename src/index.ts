@@ -10,12 +10,20 @@ const matches = fs
     return row.split(',');
   });
 
+// enum - used to indicate a set of closely related results - stores either numbers or strings and accessed like objects
+// These can also be referenced as types, e.g. return value of a function
+enum MatchResult {
+  HomeWin = 'H',
+  AwayWin = 'A',
+  Draw = 'D'
+}
+
 // Count number of Man Utd wins
 let manUnitedWins = 0;
 for (let match of matches) {
-  if (match[1] === 'Man United' && match[5] === 'H') {
+  if (match[1] === 'Man United' && match[5] === MatchResult.HomeWin) {
     manUnitedWins++;
-  } else if (match[2] === 'Man United' && match[5] === 'A') {
+  } else if (match[2] === 'Man United' && match[5] === MatchResult.AwayWin) {
     manUnitedWins++;
   }
 }
