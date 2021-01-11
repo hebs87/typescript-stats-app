@@ -1,8 +1,8 @@
-import { CsvFileReader } from "./CsvFileReader";
+import { MatchReaderGeneric } from "./MatchReaderGeneric";
 import { MatchResult } from "./MatchResult";
 
 // Read the file and convert to 2 dimensional array - first split each new line, then split new line at commas
-const reader = new CsvFileReader('football.csv');
+const reader = new MatchReaderGeneric('football.csv');
 reader.read();
 const matches = reader.data;
 
