@@ -1,4 +1,4 @@
-import { MatchReaderGeneric } from "./MatchReaderGeneric";
+import { MatchReaderGeneric } from "./generics-inheritance/MatchReaderGeneric";
 import { MatchResult } from "./MatchResult";
 
 // Read the file and convert to 2 dimensional array - first split each new line, then split new line at commas
