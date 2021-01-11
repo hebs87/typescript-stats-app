@@ -1,5 +1,5 @@
-import { dateStringToDate } from "./utils";
-import { MatchResult } from "./MatchResult";
+import { dateStringToDate } from "../utils";
+import { MatchResult } from "../MatchResult";
 
 // Define a MatchDate tuple type to assign to the converted tuple in the read() function
 type MatchData = [
