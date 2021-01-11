@@ -1,10 +1,13 @@
-import { MatchReaderGeneric } from "./generics-inheritance/MatchReaderGeneric";
+import { MatchReaderInterface } from "./MatchReaderInterface";
+import {CsvFileReaderInterface} from "./CsvFileReaderInterface";
 import { MatchResult } from "./MatchResult";
 
-// Read the file and convert to 2 dimensional array - first split each new line, then split new line at commas
-const reader = new MatchReaderGeneric('football.csv');
-reader.read();
-const matches = reader.data;
+// Create an object that satisfies the DataReader interface
+const csvReader = new CsvFileReaderInterface('football.csv');
+// Create an instance of MatchReader and pass in something to satisfy the MatchReader interface
+const matchReader = new MatchReaderInterface(csvReader);
+matchReader.load();
+const matches = matchReader.matches;
 
 // Count number of Man Utd wins
 let manUnitedWins = 0;
