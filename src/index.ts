@@ -2,9 +2,9 @@
 import { MatchReaderInterface } from "./InterfaceComposition/MatchReaderInterface";
 import {CsvFileReaderInterface} from "./InterfaceComposition/CsvFileReaderInterface";
 import { Summary } from "./Summary";
-import { WinsAnalysis } from "./analyzers/WinsAnalysis";
+// import { WinsAnalysis } from "./analyzers/WinsAnalysis";
 // import { ConsoleReports } from "./reportTargets/ConsoleReports";
-import { HtmlReport } from "./reportTargets/HtmlReport";
+// import { HtmlReport } from "./reportTargets/HtmlReport";
 
 // USING GENERIC ABSTRACT CLASS INHERITANCE APPROACH
 // const reader = new MatchReaderGeneric('football.csv');
@@ -27,8 +27,7 @@ const matches = matchReader.matches;
 // Call the buildAndPrintReport method in the Summary instance to trigger the analysis and output
 // summary.buildAndPrintReport(matches);
 
-const summary = new Summary(
-  new WinsAnalysis('Man United'),
-  new HtmlReport('report.html')
-);
-summary.buildAndPrintReport(matches);
+const htmlSummary = Summary.winsAnalysisWithHtmlReport('Man United');
+htmlSummary.buildAndPrintReport(matches);
+const consoleSummary = Summary.winsAnalysisWithConsoleReport('Man United');
+consoleSummary.buildAndPrintReport(matches);
