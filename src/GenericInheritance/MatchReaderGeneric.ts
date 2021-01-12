@@ -1,17 +1,7 @@
 import { CsvFileReaderGeneric } from "./CsvFileReaderGeneric";
 import { dateStringToDate } from "../utils";
 import { MatchResult } from "../MatchResult";
-
-// Define a MatchDate tuple type to assign to the converted tuple in the read() function
-type MatchData = [
-  Date,
-  string,
-  string,
-  number,
-  number,
-  MatchResult,
-  string
-];
+import { MatchData } from "../MatchData";
 
 // Pass in MatchData as the argument for the generic argument value in CsvFileReaderGeneric
 export class MatchReaderGeneric extends CsvFileReaderGeneric<MatchData> {
