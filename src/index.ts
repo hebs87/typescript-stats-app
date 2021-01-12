@@ -1,7 +1,9 @@
-import { MatchReaderGeneric } from "./GenericInheritance/MatchReaderGeneric";
+// import { MatchReaderGeneric } from "./GenericInheritance/MatchReaderGeneric";
 import { MatchReaderInterface } from "./InterfaceComposition/MatchReaderInterface";
 import {CsvFileReaderInterface} from "./InterfaceComposition/CsvFileReaderInterface";
-import { MatchResult } from "./MatchResult";
+import { Summary } from "./Summary";
+import { WinsAnalysis } from "./analyzers/WinsAnalysis";
+import { ConsoleReports } from "./reportTargets/ConsoleReports";
 
 // USING GENERIC ABSTRACT CLASS INHERITANCE APPROACH
 // const reader = new MatchReaderGeneric('football.csv');
@@ -16,14 +18,10 @@ const matchReader = new MatchReaderInterface(csvReader);
 matchReader.load();
 const matches = matchReader.matches;
 
-// Count number of Man Utd wins
-let manUnitedWins = 0;
-for (let match of matches) {
-  if (match[1] === 'Man United' && match[5] === MatchResult.HomeWin) {
-    manUnitedWins++;
-  } else if (match[2] === 'Man United' && match[5] === MatchResult.AwayWin) {
-    manUnitedWins++;
-  }
-}
-
-console.log(`Manchester United won ${manUnitedWins} games`);
+// Create new Summary instance and pass in the analyzer and output target classes - pass in team name to analyzer
+const summary = new Summary(
+  new WinsAnalysis('Man United'),
+  new ConsoleReports()
+);
+// Call the buildAndPrintReport method in the Summary instance to trigger the analysis and output
+summary.buildAndPrintReport(matches);
