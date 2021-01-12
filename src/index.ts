@@ -12,20 +12,10 @@ import { Summary } from "./Summary";
 // const matches = reader.data;
 
 // USING INTERFACE COMPOSITION APPROACH
-// Create an object that satisfies the DataReader interface
-const csvReader = new CsvFileReaderInterface('football.csv');
-// Create an instance of MatchReader and pass in something to satisfy the MatchReader interface
-const matchReader = new MatchReaderInterface(csvReader);
+// Create an instance of MatchReader and pass in filename (CsvFileReader is called from the static method
+const matchReader = MatchReaderInterface.fromCsv('football.csv');
 matchReader.load();
 const matches = matchReader.matches;
-
-// Create new Summary instance and pass in the analyzer and output target classes - pass in team name to analyzer
-// const summary = new Summary(
-//   new WinsAnalysis('Man United'),
-//   new ConsoleReports()
-// );
-// Call the buildAndPrintReport method in the Summary instance to trigger the analysis and output
-// summary.buildAndPrintReport(matches);
 
 const htmlSummary = Summary.winsAnalysisWithHtmlReport('Man United');
 htmlSummary.buildAndPrintReport(matches);
